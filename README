@@ -1,1 +1,1 @@
-head data/msgs_200k.27.csv | ./csv_to_corpus_input.rb | ./corpus.py
+head data/msgs_200k.27.csv | ./extract_body.rb | ./noun_phrases.py
