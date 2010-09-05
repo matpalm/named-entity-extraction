@@ -27,6 +27,5 @@ STDIN.each do |line|
     duplicate_spaces_removed.
     duplicate_punctuation_removed
 
-  puts "#{msg_id}. #{body}"
-  puts # require a new line to denote new paragraph
+  puts "#{msg_id}\t#{body}"
 end
