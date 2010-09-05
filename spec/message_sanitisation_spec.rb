@@ -16,4 +16,12 @@ describe 'sanitising of messages' do
       should == 'abc Interesting powerpoint: def'
   end
 
+  it 'should remove brackets' do
+    'ab ( cd ) ef'.sanitise.should == 'ab cd ef'
+  end
+
+  it 'should remove embedded urls' do
+    'abc [this article|http://www.thehollandring.com/11stedentocht.shtml] def'.sanitise.should == 'abc this article def'
+  end
+  
 end
