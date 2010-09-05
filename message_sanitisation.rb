@@ -1,5 +1,9 @@
 class String
 
+  def without_bare_urls
+    gsub(/http.*?\s/,' ').sub(/http.*?$/,' ')
+  end
+
   def duplicate_spaces_removed
     gsub("\r",' ').gsub("/n",' ').gsub("\t",' ').gsub(/\s+/,' ')
   end
@@ -15,6 +19,7 @@ class String
 
   def sanitise
     strip.
+    without_bare_urls.
     duplicate_spaces_removed.
     duplicate_punctuation_removed
   end
