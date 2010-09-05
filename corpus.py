@@ -4,15 +4,20 @@ from nltk import pos_tag, word_tokenize, RegexpParser
 
 wordlists = PlaintextCorpusReader('data', 'test.corpus')
 
-grammar = "NP: {<JJ>*<NN|NNP>+}" # 0 or more adjectives followed by 1 or more nouns (or noun phrases)
+grammar = "NP: {<JJ>*<NNP>+}" # 0 or more adjectives followed by 1 or more nouns (or noun phrases)
 chunk_parser = RegexpParser(grammar)
 
-first_sentence = wordlists.paras()[0][0]
-tagged_sentence = pos_tag(first_sentence)
-print "pos tags", tagged_sentence
+for paragraph in wordlists.paras():
+    post_id = paragraph.pop(0).pop(0)
+    for sentence in paragraph:
+        print "sentence:", sentence
+        tagged = pos_tag(sentence)
+        parse_tree = chunk_parser.parse(tagged)
+        for subtree in parse_tree.subtrees():
+            if subtree.node == 'NP':
+                print "NounPhrase", post_id, subtree
+        print
 
-
-print chunk_parser.parse(tagged_sentence)
 
 
 
