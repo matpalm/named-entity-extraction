@@ -23,5 +23,9 @@ describe 'sanitising of messages' do
   it 'should remove embedded urls' do
     'abc [this article|http://www.thehollandring.com/11stedentocht.shtml] def'.sanitise.should == 'abc this article def'
   end
+
+  it 'should remove italics markup (+)' do
+    'a few words +in italics+ are awesome!'.sanitise.should == 'a few words in italics are awesome!'
+  end
   
 end

@@ -6,6 +6,7 @@ STDIN.each do |line|
 
   fields = line.split("\t")
   msg_id, body = [0,7].map{|i| fields[i]}
+  body = body.sanitise
 
-  puts "#{msg_id}\t#{body.sanitise}"
+  puts "#{msg_id}\t[#{body}]" unless body.empty?
 end

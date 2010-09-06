@@ -1,7 +1,19 @@
 class String
 
+  def without_embedded_links
+    gsub(/\[(.*?)\|(.*?)\]/) { $1 } 
+  end
+
   def without_bare_urls
     gsub(/http.*?\s/,' ').sub(/http.*?$/,' ')
+  end
+
+  def without_brackets
+    gsub(/[\)\(]/, ' ')
+  end
+
+  def without_italics_markup 
+    gsub(/\+/,' ')
   end
 
   def duplicate_spaces_removed
@@ -17,22 +29,14 @@ class String
     str
   end
 
-  def without_brackets 
-    # confuses tagger, which thinks they are a NNP (?)
-    gsub(/[\)\(]/, ' ')
-  end
-
-  def without_embedded_links
-    gsub(/\[(.*?)\|(.*?)\]/) { $1 }
-  end
-
   def sanitise
-    strip.
     without_embedded_links.
     without_bare_urls.
     without_brackets.
+    without_italics_markup.
+    duplicate_punctuation_removed.
     duplicate_spaces_removed.
-    duplicate_punctuation_removed
+    strip
   end
 
 end
