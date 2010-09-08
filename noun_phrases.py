@@ -8,19 +8,19 @@ chunk_parser = RegexpParser(grammar)
 tokenizer = WordPunctTokenizer()
 
 for line in sys.stdin.readlines():
-    post_id, text = string.split(line.rstrip(), "\t")
+    post_id, time, text = string.split(line.rstrip(), "\t")
     # print "post_id", post_id, "text", text
     for sentence in sent_tokenize(text):
-        #print "post_id",post_id,"sentence",sentence
         tagged = pos_tag(tokenizer.tokenize(sentence))
+        # print "post_id",post_id,"tagged",tagged
         if not len(tagged)==0:
             #print "tagged", tagged
             parse_tree = chunk_parser.parse(tagged)
             for subtree in parse_tree.subtrees():
                 if subtree.node == 'NP':
                     phrase = subtree.leaves()
-                    terms = [ term for (term,type) in phrase ]
-                    print "NounPhrase", post_id, " ".join(terms)
+                    phrase = " ".join([ term for (term,type) in phrase ])
+                    print "\t".join([post_id, time, phrase])
 
 
 

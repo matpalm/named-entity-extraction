@@ -5,8 +5,8 @@ STDIN.each do |line|
   next if line =~ /^messageID/
 
   fields = line.split("\t")
-  msg_id, body = [0,7].map{|i| fields[i]}
+  msg_id, body, time = [0,7,10].map{|i| fields[i]}
   body = body.sanitise
 
-  puts "#{msg_id}\t[#{body}]" unless body.empty?
+  puts "#{msg_id}\t#{time}\t#{body}" unless body.empty?
 end
