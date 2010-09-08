@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class String
 
   def without_embedded_links
@@ -29,11 +30,18 @@ class String
     str
   end
 
+  def character_normalized
+    # nltk WordPunctTokenizer is ok with Düsseldorf 
+    # but is confused don´t over don't
+    gsub("´","'")
+  end
+
   def sanitise
     without_embedded_links.
     without_bare_urls.
     without_brackets.
     without_italics_markup.
+    character_normalized.
     duplicate_punctuation_removed.
     duplicate_spaces_removed.
     strip
