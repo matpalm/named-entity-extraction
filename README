@@ -1,1 +1,8 @@
 head data/msgs_200k.27.csv | ./extract_body.rb | ./noun_phrases.py
+
+
+extract NP
+identify places/TOIs
+run sentiment analysis
+ train against something? MT?
+ see http://text-processing.com/demo/sentiment/
