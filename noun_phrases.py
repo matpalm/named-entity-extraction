@@ -3,10 +3,11 @@ import sys, string, re, codecs, locale
 from nltk import sent_tokenize, word_tokenize, pos_tag, RegexpParser
 from nltk.tokenize import WordPunctTokenizer, PunktWordTokenizer, PunktSentenceTokenizer
 
-grammar = "NP: {<JJ>*<NNP>+}" # 0 or more adjectives followed by 1 or more nouns (or noun phrases)
+#grammar = "NP: {<JJ>*<NNP>+}" # 0 or more adjectives followed by 1 or more nouns (or noun phrases)
+grammar = "NP: {<NNP>+}" # 1 or more nouns (or noun phrases)
+
 chunk_parser = RegexpParser(grammar)
 sent_tokenizer = PunktSentenceTokenizer()
-
 term_tokenizer = WordPunctTokenizer()
 #term_tokenizer = PunktWordTokenizer()
 
