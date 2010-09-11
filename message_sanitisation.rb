@@ -1,5 +1,10 @@
+#!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 class String
+
+  def without_edited_by_notes
+    sub(/Edited by:.*/,'')  
+  end
 
   def without_embedded_links
     gsub(/\[(.*?)\|(.*?)\]/) { $1 } 
@@ -10,6 +15,8 @@ class String
   end
 
   def without_brackets
+    # caused confusion to tagger which treats
+    # them as NNP. we end up getting "Phrase )" as NNP+ chunk
     gsub(/[\)\(]/, ' ')
   end
 
@@ -17,8 +24,8 @@ class String
     gsub(/\+/,' ')
   end
 
-  def duplicate_spaces_removed
-    gsub("\r",' ').gsub("/n",' ').gsub("\t",' ').gsub(/\s+/,' ')
+  def multiple_line_breaks_converted_to_fullstop
+    gsub("\r/n",'.').gsub(/\.+/,'. ')
   end
 
   def duplicate_punctuation_removed
@@ -30,18 +37,17 @@ class String
     str
   end
 
-  def character_normalized
-    # nltk WordPunctTokenizer is ok with Düsseldorf 
-    # but is confused don´t over don't
-    gsub("´","'")
+  def duplicate_spaces_removed
+    gsub("\r",' ').gsub("/n",' ').gsub("\t",' ').gsub(/\s+/,' ')
   end
 
   def sanitise
+    without_edited_by_notes.
     without_embedded_links.
     without_bare_urls.
     without_brackets.
     without_italics_markup.
-    character_normalized.
+    multiple_line_breaks_converted_to_fullstop.
     duplicate_punctuation_removed.
     duplicate_spaces_removed.
     strip

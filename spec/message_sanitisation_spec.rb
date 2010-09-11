@@ -27,5 +27,9 @@ describe 'sanitising of messages' do
   it 'should remove italics markup (+)' do
     'a few words +in italics+ are awesome!'.sanitise.should == 'a few words in italics are awesome!'
   end
+
+  it 'should remove editing notes at end of message' do
+    'Heres a message Edited by: bob Edited by: bob'.sanitise.should == 'Heres a message'
+  end
   
 end
