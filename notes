@@ -1,0 +1,28 @@
+extract NP *
+ tokenize to sentence, then to terms, then chunk to NNP+s *
+identify places/TOIs 
+ get list of current places/tois and a way to fuzzy match
+ research a way to do short document matching.
+  ferret? levenstein?
+ should matching make restrictions based on forum message is in?
+ determine a good way to make place synonyms; eg guggenheim
+  thorntree/solr search logs?
+run sentiment analysis
+ train against something? MTurk?
+  see http://text-processing.com/demo/sentiment/
+
+-------------------------------------------------------
+'interesting' notes
+
+16776952 - includes special characters as well as lots of place names
+16785137 - contractions using ´ instead of '. eg haven´t
+16786703 - includes exact poi match 'Cheong Fatt Tze Mansion'
+16786726 - includes exact poi match 'Great Barrier Reef'
+16786559 - include reference to 'Urban Age Hostel' which matchs pois 'Urban Age'. should we drop Hostel in match then? second level stop word?
+16786871 - includes place refs (Hurgada) and refers to a hotel 'Safir resort Hurgada' which looks hard to extract
+16786860 - lots of restaurant mini reviews
+16786874 - lots of places
+16786898 - 'Giza Pyramids' poi
+16786924 - refers to 'Hermitage' but there are 10+ hermitages in poi list (different places)
+16786933 - lots of named snorkelling spots
+16786971 - some hotel refs in an annoying format "Silom Serene Hotel: Om Yim Lodge: iResidence Hotel: The Heritage Bangkok:"
