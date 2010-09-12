@@ -1,8 +1,9 @@
+gem install ferret
+require nltk install including corpus for chunking (need to look up which one again)
+
 head data/msgs_200k.27.csv | ./extract_body.rb | ./noun_phrases.py
+see also batch.sh
 
+head -n1000 lp_places.csv > test
+./map_to_places.rb and enter query tests
 
-extract NP
-identify places/TOIs
-run sentiment analysis
- train against something? MT?
- see http://text-processing.com/demo/sentiment/
